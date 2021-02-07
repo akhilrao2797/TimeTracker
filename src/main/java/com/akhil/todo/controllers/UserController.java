@@ -1,15 +1,10 @@
 package com.akhil.todo.controllers;
 
-import com.akhil.todo.models.ToDo;
 import com.akhil.todo.models.User;
 import com.akhil.todo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/user/v1/")
