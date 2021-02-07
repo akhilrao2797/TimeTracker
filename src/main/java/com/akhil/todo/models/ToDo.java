@@ -1,6 +1,7 @@
 package com.akhil.todo.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
 
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
@@ -8,14 +9,19 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
+@RedisHash("TODO")
 public class ToDo implements Serializable {
 
     @Id
-    long id;
+    int id;
 
     @NotNull
     @NotEmpty
     String todo;
+
+    @NotEmpty
+    @NotNull
+    String user;
 
     @FutureOrPresent
     Date fromDate;
@@ -27,7 +33,7 @@ public class ToDo implements Serializable {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -53,5 +59,13 @@ public class ToDo implements Serializable {
 
     public void setToDate(Date toDate) {
         this.toDate = toDate;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }

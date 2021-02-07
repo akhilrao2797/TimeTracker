@@ -7,15 +7,16 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @Repository
-public class RedisRepository {
+public class ToDoRepository {
 
     private RedisTemplate<Integer, ToDo> redisTemplate;
     private HashOperations hashOperations;
 
     @Autowired
-    RedisRepository(RedisTemplate<Integer, ToDo> redisTemplate){
+    ToDoRepository(RedisTemplate<Integer, ToDo> redisTemplate){
         this.redisTemplate = redisTemplate;
         this.hashOperations = redisTemplate.opsForHash();
     }
@@ -38,5 +39,14 @@ public class RedisRepository {
         return toDo;
     }
 
+    public void delete(int id){
+        if(hashOperations.hasKey("TODO", id))
+            hashOperations.delete("TODO", id);
+        else
+            throw new NoSuchElementException();
+    }
 
+    public boolean exists(long id) {
+        return hashOperations.hasKey("TODO", id);
+    }
 }
