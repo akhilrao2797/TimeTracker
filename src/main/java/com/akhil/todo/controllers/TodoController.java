@@ -26,7 +26,7 @@ public class TodoController {
         return ResponseEntity.ok(toDoService.getAll());
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<ToDo> updateToDo(@Validated @RequestBody ToDo toDo){
         return ResponseEntity.ok(toDoService.updateNewEntry(toDo));
     }
