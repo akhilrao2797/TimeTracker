@@ -17,7 +17,7 @@ public class TodoController {
     private ToDoService toDoService;
 
     @PostMapping("/create")
-    public ResponseEntity<ToDo> createNewToDo(@Validated @RequestBody ToDo toDo){
+    public ResponseEntity<ToDo> createNewToDo(@Validated @RequestBody ToDo toDo) throws NoSuchFieldException {
         return ResponseEntity.ok(toDoService.createNewEntry(toDo));
     }
 
@@ -27,7 +27,7 @@ public class TodoController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<ToDo> updateToDo(@Validated @RequestBody ToDo toDo){
+    public ResponseEntity<ToDo> updateToDo(@Validated @RequestBody ToDo toDo) throws NoSuchFieldException {
         return ResponseEntity.ok(toDoService.updateNewEntry(toDo));
     }
 
