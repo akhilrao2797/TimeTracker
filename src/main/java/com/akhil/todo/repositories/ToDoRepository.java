@@ -21,32 +21,32 @@ public class ToDoRepository {
         this.hashOperations = redisTemplate.opsForHash();
     }
 
-    public Map<Integer, ToDo> findAll(){
-        return hashOperations.entries("TODO");
+    public Map<Integer, ToDo> findAll(String user){
+        return hashOperations.entries("TODO_"+user);
     }
 
     public ToDo save(ToDo toDo){
-        hashOperations.put("TODO", toDo.getId(), toDo);
+        hashOperations.put("TODO_"+toDo.getUser(), toDo.getId(), toDo);
         return toDo;
     }
 
-    public ToDo findById(int id){
-        return (ToDo) hashOperations.get("TODO", id);
+    public ToDo findById(int id, String user){
+        return (ToDo) hashOperations.get("TODO_"+user, id);
     }
 
     public ToDo update(ToDo toDo){
-        hashOperations.put("TODO", toDo.getId(), toDo);
+        hashOperations.put("TODO_"+toDo.getUser(), toDo.getId(), toDo);
         return toDo;
     }
 
-    public void delete(int id){
-        if(hashOperations.hasKey("TODO", id))
-            hashOperations.delete("TODO", id);
+    public void delete(int id, String user){
+        if(hashOperations.hasKey("TODO_"+user, id))
+            hashOperations.delete("TODO_"+user, id);
         else
             throw new NoSuchElementException();
     }
 
-    public boolean exists(long id) {
-        return hashOperations.hasKey("TODO", id);
+    public boolean exists(long id, String user) {
+        return hashOperations.hasKey("TODO_"+user, id);
     }
 }

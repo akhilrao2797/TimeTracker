@@ -21,9 +21,9 @@ public class TodoController {
         return ResponseEntity.ok(toDoService.createNewEntry(toDo));
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<Map> createNewToDo(){
-        return ResponseEntity.ok(toDoService.getAll());
+    @GetMapping("/{user}/all")
+    public ResponseEntity<Map> createNewToDo(@PathVariable("user") String user){
+        return ResponseEntity.ok(toDoService.getAll(user));
     }
 
     @PutMapping("/update")
@@ -31,8 +31,8 @@ public class TodoController {
         return ResponseEntity.ok(toDoService.updateNewEntry(toDo));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ToDo> getById(@PathVariable("id") int id){
-        return ResponseEntity.ok(toDoService.getById(id));
+    @GetMapping("/{user}/{id}")
+    public ResponseEntity<ToDo> getById(@PathVariable("id") int id, @PathVariable("user") String user){
+        return ResponseEntity.ok(toDoService.getById(id, user));
     }
 }
