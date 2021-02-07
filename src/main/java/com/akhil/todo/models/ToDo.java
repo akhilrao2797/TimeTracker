@@ -21,7 +21,7 @@ public class ToDo implements Serializable {
 
     @NotEmpty
     @NotNull
-    String userId;
+    String user;
 
     @FutureOrPresent
     Date fromDate;
@@ -62,10 +62,10 @@ public class ToDo implements Serializable {
     }
 
     public String getUser() {
-        return userId;
+        return user;
     }
 
     public void setUser(String user) {
-        this.userId = user;
+        this.user = user;
     }
 }

@@ -5,9 +5,10 @@ import org.springframework.data.redis.core.RedisHash;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @RedisHash("USER")
-public class User {
+public class User implements Serializable {
 
     @Id
     String id;
