@@ -16,6 +16,10 @@ public class User implements Serializable {
     @NotNull
     String username;
 
+    @NotNull
+    @NotEmpty
+    String password;
+
     public String getUUID() {
         return id;
     }
@@ -30,5 +34,13 @@ public class User implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
