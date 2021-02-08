@@ -4,6 +4,7 @@ import com.akhil.todo.models.User;
 import com.akhil.todo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,7 +15,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/create")
-    public ResponseEntity<User> createUser(@RequestBody User user){
+    public ResponseEntity<User> createUser(@Validated @RequestBody User user) throws Exception {
         return ResponseEntity.ok(userService.createNewUser(user));
     }
 
