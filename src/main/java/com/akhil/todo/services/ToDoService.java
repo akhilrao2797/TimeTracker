@@ -21,25 +21,25 @@ public class ToDoService {
         this.toDoRepository = toDoRepository;
     }
 
-    public ToDo createNewEntry(ToDo toDo) throws NoSuchFieldException {
+    public ToDo createNewEntry(ToDo toDo) {
         if(userService.exists(toDo.getUser()))
             if(!toDoRepository.exists(toDo.getId(), toDo.getUser()))
                 return toDoRepository.save(toDo);
             else
                 throw new DuplicateKeyException("ToDo ID already exists");
         else
-            throw new NoSuchFieldException("Invalid USER");
+            throw new NoSuchElementException("Invalid USER");
     }
 
     public Map<Integer, ToDo> getAll(String user){
         return toDoRepository.findAll(user);
     }
 
-    public ToDo updateNewEntry(ToDo toDo) throws NoSuchFieldException {
+    public ToDo updateNewEntry(ToDo toDo) {
         if(userService.exists(toDo.getUser()) && toDoRepository.exists(toDo.getId(), toDo.getUser()))
             return toDoRepository.update(toDo);
         else
-            throw new NoSuchFieldException("Invalid USER or TODO ID");
+            throw new NoSuchElementException("Invalid USER or TODO ID");
     }
 
     public ToDo getById(int id, String user) {

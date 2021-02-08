@@ -3,9 +3,8 @@ package com.akhil.todo.services;
 import com.akhil.todo.models.User;
 import com.akhil.todo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 public class UserService {
@@ -13,8 +12,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User createNewUser(User user) {
-        user.setUUID(UUID.randomUUID().toString().replace("-","").toUpperCase());
+    public User createNewUser(User user){
+        if(userRepository.exists(user.getUsername()))
+            throw new DuplicateKeyException("User already exists");
         userRepository.save(user);
         return user;
     }

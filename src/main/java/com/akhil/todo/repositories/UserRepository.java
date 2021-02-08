@@ -21,7 +21,7 @@ public class UserRepository {
     }
 
     public User save(User user){
-        hashOperations.put("USER", user.getUUID(), user);
+        hashOperations.put("USER", user.getUsername(), user);
         return user;
     }
 

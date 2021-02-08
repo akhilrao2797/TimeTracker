@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.Map;
 
 @RestController
@@ -21,9 +22,9 @@ public class TodoController {
         return ResponseEntity.ok(toDoService.createNewEntry(toDo));
     }
 
-    @GetMapping("/{user}/all")
-    public ResponseEntity<Map> createNewToDo(@PathVariable("user") String user){
-        return ResponseEntity.ok(toDoService.getAll(user));
+    @GetMapping("/all")
+    public ResponseEntity<Map> createNewToDo(Principal principal){
+        return ResponseEntity.ok(toDoService.getAll(principal.getName()));
     }
 
     @PutMapping("/update")
@@ -31,8 +32,8 @@ public class TodoController {
         return ResponseEntity.ok(toDoService.updateNewEntry(toDo));
     }
 
-    @GetMapping("/{user}/{id}")
-    public ResponseEntity<ToDo> getById(@PathVariable("id") int id, @PathVariable("user") String user){
-        return ResponseEntity.ok(toDoService.getById(id, user));
+    @GetMapping("/{id}")
+    public ResponseEntity<ToDo> getById(@PathVariable("id") int id, Principal principal){
+        return ResponseEntity.ok(toDoService.getById(id, principal.getName()));
     }
 }
