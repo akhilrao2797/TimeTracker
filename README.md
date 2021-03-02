@@ -1,4 +1,4 @@
-# ToDoList
+# TimeTracker
 
 It is a simple ToDo application that lets users to add, view and delete his todo list.
  
