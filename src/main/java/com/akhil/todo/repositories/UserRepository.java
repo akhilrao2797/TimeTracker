@@ -30,7 +30,6 @@ public class UserRepository {
         return hashOperations.entries("USER");
     }
 
-
     public User findById(String id){
         return (User) hashOperations.get("USER", id);
     }

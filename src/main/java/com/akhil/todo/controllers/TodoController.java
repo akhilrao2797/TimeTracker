@@ -42,8 +42,8 @@ public class TodoController {
     }
 
     @GetMapping("/alerts")
-    public ResponseEntity<Set<ToDo>> getAlerts(){
-        return ResponseEntity.ok(notificationService.getToDoList());
+    public ResponseEntity<Set<ToDo>> getAlerts(Principal principal){
+        return ResponseEntity.ok(notificationService.getToDoList(principal.getName()));
     }
 
 }
