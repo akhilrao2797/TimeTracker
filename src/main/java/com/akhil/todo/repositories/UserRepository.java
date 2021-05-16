@@ -6,6 +6,7 @@ import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @Repository
@@ -23,6 +24,10 @@ public class UserRepository {
     public User save(User user){
         hashOperations.put("USER", user.getUsername(), user);
         return user;
+    }
+
+    public Map<String, User> findAll(){
+        return hashOperations.entries("USER");
     }
 
     public User findById(String id){
